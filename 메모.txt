@@ -184,3 +184,14 @@ src/main/java => java class
 src/main/resources => java 이외의 모든 것, web(html), 설정파일
 
 DTO = VO = model = domain (전부 비슷한 의미로 쓰인다, 수업에서는 domain으로 사용)
+
+--------------------------------------------------------------------------------------
+2024-06-13 
+DB연동(MyBatis)Cycle에서 자주 발생하는 에러 상황
+: 이클립스 콘솔에서 사유 확인하기
+1. SQL 쿼리문 문법이 틀렸을 때 (status=500)
+ > sql 패키지, #이 보이면 xml일 가능성이 크다
+2. Spring bean을 만드는 어노테이션이 없을때, 또는 @Autowired 누락 (status=500)
+> bean is null => NPE(NullPointException)
+3. xml, mybatis 등 오타 (status=500)
+> Invalid bound statement
