@@ -191,7 +191,13 @@ DB연동(MyBatis)Cycle에서 자주 발생하는 에러 상황
 : 이클립스 콘솔에서 사유 확인하기
 1. SQL 쿼리문 문법이 틀렸을 때 (status=500)
  > sql 패키지, #이 보이면 xml일 가능성이 크다
+ > TooManyResultsException : 단건으로 설정이 되어있는데 결과는 그것보다 더 많이 나왔을경우
 2. Spring bean을 만드는 어노테이션이 없을때, 또는 @Autowired 누락 (status=500)
 > bean is null => NPE(NullPointException)
 3. xml, mybatis 등 오타 (status=500)
 > Invalid bound statement
+---------------------------------------------------------------------------------------
+2024-06-14
+Bad Request (status=400) : 서버에 도달하지 못함, 파라미터의 잘못이므로 파라미터쪽 확인
+(status=404) : 주소를 잘못 적거나, 잘못 요청했을때
+405 : 메소드 불일치
