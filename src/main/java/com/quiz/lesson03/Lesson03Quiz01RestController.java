@@ -32,4 +32,12 @@ public class Lesson03Quiz01RestController {
 			@RequestParam("rent_price") int rentPrice) {
 		return realEstateBO.getRealEstateListByRentPrice(rentPrice);
 	}
+	
+	// http://localhost:8080/lesson03/quiz01/3?area=90&price=130000
+	@RequestMapping("/3")
+	public List<RealEstate> quiz01_3(
+			@RequestParam("area") int area,
+			@RequestParam(value = "price", required = true) int price) {
+		return realEstateBO.getRealEstateListByAreaPrice(area, price);
+	}
 }
