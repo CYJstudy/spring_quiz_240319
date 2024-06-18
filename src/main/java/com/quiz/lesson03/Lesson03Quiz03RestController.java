@@ -21,6 +21,6 @@ public class Lesson03Quiz03RestController {
 			@RequestParam("price") int price) {
 		
 		int rowCount = realEstateBO.updateRealEstateById(id, type, price);
-		return "수정 성공:" + rowCount;
+		return "수정 성공:" + rowCount; // HTML
 	}
 }

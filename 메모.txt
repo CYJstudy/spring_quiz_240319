@@ -201,3 +201,10 @@ DB연동(MyBatis)Cycle에서 자주 발생하는 에러 상황
 Bad Request (status=400) : 서버에 도달하지 못함, 파라미터의 잘못이므로 파라미터쪽 확인
 (status=404) : 주소를 잘못 적거나, 잘못 요청했을때
 405 : 메소드 불일치
+
+-------------------------------------------------------------------------------------
+2024-06-18
+Request    ->    Response
+                   @Controller + @ResponseBody return String => HTML
+                   @Controller + @ResponseBody return 객체(도메인 or list) => JSON
+                   @Controller return String (html 경로) => HTML
