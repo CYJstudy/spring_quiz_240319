@@ -12,11 +12,21 @@ public class SellerBO {
 	@Autowired
 	private SellerMapper sellerMapper;
 	
-	public void addSeller(String nickname, String profileImageUrl, String temperature) {
-		sellerMapper.insertSeller(nickname, profileImageUrl, temperature);
+	// input: 파라미터들
+	// output: X
+	public void addSeller(String nickname111, String profileImageUrl11111, double temperature22223) {
+		sellerMapper.insertSeller(nickname111, profileImageUrl11111, temperature22223);
 	}
 	
-	public Seller getSellerInfo() {
-			return sellerMapper.selectSellerInfo();
+	// input: X
+	// output: Seller(채워져있거나 null)
+	public Seller getLatestSeller() {
+			return sellerMapper.selectLatestSeller();
+	}
+	
+	// input: id
+	// output: Seller(채워져있거나 null)
+	public Seller getSellerById(int id) {
+		return sellerMapper.selectSellerById(id);
 	}
 }

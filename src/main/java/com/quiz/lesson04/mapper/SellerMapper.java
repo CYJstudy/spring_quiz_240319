@@ -8,10 +8,12 @@ import com.quiz.lesson04.domain.Seller;
 @Mapper
 public interface SellerMapper {
 
-	public int insertSeller(
+	public void insertSeller(
 			@Param("nickname") String nickname, 
 			@Param("profileImageUrl") String profileImageUrl, 
-			@Param("temperature") String temperature);
+			@Param("temperature") double temperature);
 	
-	public Seller selectSellerInfo();
+	public Seller selectLatestSeller();
+	
+	public Seller selectSellerById(int id);
 }

@@ -26,12 +26,12 @@ public class Lesson04Quiz01Controller {
 		return "lesson04/addSeller"; // html 경로
 	}
 	
-	// 판매자 추가 진행
+	// 판매자 DB 저장 => 성공 화면
 	@PostMapping("/add-seller")
 	public String addSeller(
 			@RequestParam("nickname") String nickname,
 			@RequestParam(value = "profileImageUrl", required = false) String profileImageUrl,
-			@RequestParam("temperature") String temperature) {
+			@RequestParam(value = "temperature", defaultValue = "36.5") double temperature) {
 		
 		// DB 저장
 		sellerBO.addSeller(nickname, profileImageUrl, temperature);
@@ -43,16 +43,25 @@ public class Lesson04Quiz01Controller {
 	// 최근 판매자 정보 표시하는 화면
 	// http://localhost:8080/lesson04/quiz01/seller-info-view
 	@GetMapping("/seller-info-view")
-	public String sellerInfoView(Model model) {
-		// DB select
-		Seller seller = sellerBO.getSellerInfo();
+	public String sellerInfoView(
+			@RequestParam(value = "id", required = false) Integer id,
+			Model model) {
 		
-		// model 주머니에 담는다.
-		model.addAttribute("result", seller);
-		model.addAttribute("title", "최근 판매자 정보");
+		Seller seller = null;
+		
+		// DB 조회
+		if (id == null) {
+			seller = sellerBO.getLatestSeller();
+		} else {
+			seller = sellerBO.getSellerById(id);
+		}
+		
+		// model에 데이터를 담아둔다.
+		model.addAttribute("seller", seller);
+		model.addAttribute("title", "판매자 정보");
 		
 		// 화면 이동
-		return "/lesson04/sellerInfo";
+		return "lesson04/sellerInfo";
 	}
 	
 }
