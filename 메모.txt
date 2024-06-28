@@ -208,3 +208,13 @@ Request    ->    Response
                    @Controller + @ResponseBody return String => HTML
                    @Controller + @ResponseBody return 객체(도메인 or list) => JSON
                    @Controller return String (html 경로) => HTML
+
+----------------------------------------------------------------------------------------
+2024-06-28
+GET
+
+
+POST
+PUT - 수정요청
+PATCH - 수정요청
+DELETE - 삭제요청 
