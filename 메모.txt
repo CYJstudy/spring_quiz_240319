@@ -206,8 +206,8 @@ Bad Request (status=400) : 서버에 도달하지 못함, 파라미터의 잘못
 2024-06-18
 Request    ->    Response
                    @Controller + @ResponseBody return String => HTML
-                   @Controller + @ResponseBody return 객체(도메인 or list) => JSON
-                   @Controller return String (html 경로) => HTML
+                   @Controller + @ResponseBody return 객체(도메인 or list) => JSON < AJAX요청은 이방식, Model 사용X
+                   @Controller return String (html 경로) => HTML < Model 사용O
 
 ----------------------------------------------------------------------------------------
 2024-06-28

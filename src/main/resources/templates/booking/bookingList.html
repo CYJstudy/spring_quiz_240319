@@ -49,12 +49,18 @@
 					<tbody>
 						<tr th:each="booking : ${bookingList}">
 							<td th:text="${booking.name}">이름</td>
-							<td th:text="${booking.date}">예약날짜</td>
+							<td th:text="${#temporals.format(booking.date, 'yyyy년 M월 dd일')}">예약날짜</td>
 							<td th:text="${booking.day}">숙박일수</td>
 							<td th:text="${booking.headcount}">숙박인원</td>
 							<td th:text="${booking.phoneNumber}">전화번호</td>
-							<td th:text="${booking.state}">예약상태</td>
-							<td>삭제</td>
+							<td>
+								<span th:if="${booking.state == '대기중'}" class="text-info" th:text="${booking.state}"></span>
+								<span th:if="${booking.state == '확정'}" class="text-success" th:text="${booking.state}"></span>
+								<span th:if="${booking.state == '취소'}" class="text-danger" th:text="${booking.state}"></span>
+							</td>
+							<td>
+								<button type="button" class="del-btn btn btn-danger" th:text="'삭제'" th:data-booking-id="${booking.id}"></button>
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -66,5 +72,37 @@
 			<div>Copyright 2024 tongnamu. All right reserved.</div>
 		</footer>
 	</div>
+	
+	<script>
+		$(document).ready(function() {
+			// 삭제 클릭
+			$(".del-btn").on('click', function() {
+				let id = $(this).data('booking-id');
+				//alert(id);
+				
+				$.ajax({
+					// request
+					type:"delete"
+					, url: "/booking/delete-booking"
+					, data:{"id":id}
+										
+					// response
+					, success:function(data) {
+						// {"code":200, "result":"성공"}
+						if (data.code == 200) {
+							alert("삭제되었습니다.");
+							location.reload(true);
+						} else if (data.code == 500) {
+							// {"code":500, "error_message":"에러의 원인"}
+							alert(data.error_message);
+						}
+					}
+					, error:function() {
+						alert("삭제하는데 실패했습니다. 관리자에게 문의해주세요.");
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
